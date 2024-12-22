@@ -1,11 +1,66 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Semantic Navbar and Videos</title>
+  <style>
+    /* General Styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    /* Navbar Styles */
+    nav {
+      background-color: #007bff;
+      color: white;
+      padding: 1rem;
+    }
+
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: space-around;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: white;
+      font-size: 1.2rem;
+    }
+
+    nav ul li a:hover {
+      text-decoration: underline;
+    }
+
+    /* Heading Styles */
+    h1 {
+      text-align: center;
+      margin-top: 1.5rem;
+      color: #333;
+    }
+
+    /* Video Section Styles */
+    section {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+    }
+
+    video {
+      border: 2px solid #007bff;
+      border-radius: 5px;
+      width: 320px;
+      height: 180px;
+    }
+  </style>
 </head>
 <body>
   <!-- Semantic Navbar -->
@@ -18,22 +73,39 @@
   </nav>
 
   <!-- Heading for Videos -->
-  <h1>3 Random Videos</h1>
+  <h1 id="videos-heading">3 Random Videos</h1>
 
   <!-- Videos Section -->
-  <section>
-    <video controls width="640" height="360">
-      <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-    <video controls width="640" height="360">
-      <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-    <video controls width="640" height="360">
-      <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
+  <section id="videos-section">
+    <!-- Videos will be dynamically added via JavaScript -->
   </section>
+
+  <script>
+    // Video Data
+    const videoData = [
+      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4"
+    ];
+
+    // Reference to the videos section
+    const videosSection = document.getElementById('videos-section');
+
+    // Add videos dynamically
+    videoData.forEach((videoUrl) => {
+      const videoElement = document.createElement('video');
+      videoElement.setAttribute('controls', '');
+      videoElement.setAttribute('width', '320');
+      videoElement.setAttribute('height', '180');
+
+      const sourceElement = document.createElement('source');
+      sourceElement.setAttribute('src', videoUrl);
+      sourceElement.setAttribute('type', 'video/mp4');
+
+      videoElement.appendChild(sourceElement);
+      videosSection.appendChild(videoElement);
+    });
+  </script>
 </body>
 </html>
+
