@@ -16,54 +16,54 @@
     /* Navbar Styles */
     nav {
       background-color: #007bff;
-      color: white;
       padding: 1rem;
     }
 
     nav ul {
-      list-style: none;
+      list-style-type: none;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
       margin: 0;
       padding: 0;
-      display: flex;
-      justify-content: space-around;
     }
 
     nav ul li a {
       text-decoration: none;
       color: white;
-      font-size: 1.2rem;
+      font-weight: bold;
     }
 
     nav ul li a:hover {
       text-decoration: underline;
     }
 
-    /* Heading Styles */
+    /* Heading */
     h1 {
       text-align: center;
-      margin-top: 1.5rem;
+      margin-top: 1rem;
       color: #333;
     }
 
-    /* Video Section Styles */
+    /* Videos Section */
     section {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 20px;
-      padding: 20px;
+      padding: 1rem;
     }
 
     video {
-      border: 2px solid #007bff;
-      border-radius: 5px;
       width: 320px;
       height: 180px;
+      border: 2px solid #007bff;
+      border-radius: 8px;
     }
   </style>
 </head>
 <body>
-  <!-- Semantic Navbar -->
+  <!-- Navbar -->
   <nav>
     <ul>
       <li><a href="#home">Home</a></li>
@@ -72,40 +72,41 @@
     </ul>
   </nav>
 
-  <!-- Heading for Videos -->
-  <h1 id="videos-heading">3 Random Videos</h1>
+  <!-- Heading -->
+  <h1>3 Random Videos</h1>
 
   <!-- Videos Section -->
-  <section id="videos-section">
-    <!-- Videos will be dynamically added via JavaScript -->
+  <section id="video-section">
+    <!-- Videos will be added dynamically -->
   </section>
 
   <script>
-    // Video Data
-    const videoData = [
+    // Video URLs
+    const videoUrls = [
       "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
       "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
       "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4"
     ];
 
-    // Reference to the videos section
-    const videosSection = document.getElementById('videos-section');
+    // Get the video section element
+    const videoSection = document.getElementById('video-section');
 
-    // Add videos dynamically
-    videoData.forEach((videoUrl) => {
-      const videoElement = document.createElement('video');
-      videoElement.setAttribute('controls', '');
-      videoElement.setAttribute('width', '320');
-      videoElement.setAttribute('height', '180');
+    // Dynamically add video elements
+    videoUrls.forEach((url) => {
+      const video = document.createElement('video');
+      video.setAttribute('controls', true);
+      video.setAttribute('width', '320');
+      video.setAttribute('height', '180');
 
-      const sourceElement = document.createElement('source');
-      sourceElement.setAttribute('src', videoUrl);
-      sourceElement.setAttribute('type', 'video/mp4');
+      const source = document.createElement('source');
+      source.setAttribute('src', url);
+      source.setAttribute('type', 'video/mp4');
 
-      videoElement.appendChild(sourceElement);
-      videosSection.appendChild(videoElement);
+      video.appendChild(source);
+      videoSection.appendChild(video);
     });
   </script>
 </body>
 </html>
+
 
